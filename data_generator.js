@@ -13,6 +13,8 @@ streams.users.mracus = [];
 streams.users.douglascalhoun = [];
 window.users = Object.keys(streams.users);
 
+
+
 // utility function for adding tweets to our data structures
 var addTweet = function(newTweet){
   var username = newTweet.user;
@@ -42,9 +44,9 @@ var generateRandomTweet = function(){
   var tweet = {};
   tweet.user = randomElement(users);
   tweet.message = randomMessage();
-  let currentDate = new Date();
-  let time = `${currentDate.getHours()}:${currentDate.getMinutes()} and ${currentDate.getSeconds()} seconds`;
-  tweet.created_at = time;
+  // let currentDate = new Date();
+  // let time = `${currentDate.getHours()}:${currentDate.getMinutes()} and ${currentDate.getSeconds()} seconds`;
+  tweet.created_at = new Date();
   addTweet(tweet);
 };
 

@@ -1,49 +1,31 @@
 $(document).ready(function(){
-  let $body = $('body');
   let $tweetList = $('#tweetList');
-  //$body.html('');
+  jQuery("time.timeago").timeago();
 
-  //console.log(streams.home);
-
-  const tweetRefresh = () => {
-    let index = streams.home.length - 1;
+  const feed = (input) => {
+    let index = input.length - 1;
     $tweetList.html('');
     while(index >= 0){
-      let tweet = streams.home[index];
+      let tweet = input[index];
       let $tweet = $(`<div class="tweets"></div>`);
-      let userButton = `<button class="userButton">@${tweet.user}</button>`;
-      $tweet.html(`${userButton}: ${tweet.message} ${tweet.created_at}`);
+      let userButton = `<button class="userButton" id=${tweet.user}>@${tweet.user}</button>`;
+      let timeStamp = `<div class="timeStamp">${jQuery.timeago(tweet.created_at)}</button>`;
+      $tweet.html(`${userButton}: ${tweet.message} ${timeStamp}`);
       $tweet.appendTo($tweetList);
       index -= 1;
     }
   };
 
-   const redirect = (x) => {
-    // for (var key in streams.users) {
-    // if (userbuttonname === streams.users[key])
-    //   return streams.users[key]
-    // }
-    // let index = streams.users.shawndrost.length - 1;
-    // $tweetList.html('');
-    // while(index >= 0){
-    //   let tweet = streams.users.shawndrost[index];
-    //   let $tweet = $(`<div class="tweets"></div>`);
-    //   let userButton = `<button class="userButton">@${tweet.user}</button>`;
-    //   $tweet.html(`${userButton}: ${tweet.message} ${tweet.created_at}`);
-    //   $tweet.appendTo($tweetList);
-    //   index -= 1;
-    // }
+  const mainFeed = () => { 
+    feed(streams.home);
+  };
 
-    
-    //return alert('this button works');
-   }
-  //$(event.target)
-  //$(
- 
+  const userFeed = () => {
+    let $target = (event.target).id;
+    feed(streams.users[$target]);
+  };
 
-  jQuery("#newTweets").on('click', tweetRefresh); //number.toString()
-  //setInterval(tweetRefresh, 3000);
+  jQuery("#newTweets").on('click', mainFeed);
 
-  jQuery("body").on('click', '.userButton', redirect);
-
+  jQuery("body").on('click', '.userButton', userFeed);
 });
