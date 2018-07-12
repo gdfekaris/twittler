@@ -11,7 +11,9 @@ streams.users.shawndrost = [];
 streams.users.sharksforcheap = [];
 streams.users.mracus = [];
 streams.users.douglascalhoun = [];
+streams.users.visitor = [];
 window.users = Object.keys(streams.users);
+window.visitor = [];
 
 
 
@@ -44,8 +46,6 @@ var generateRandomTweet = function(){
   var tweet = {};
   tweet.user = randomElement(users);
   tweet.message = randomMessage();
-  // let currentDate = new Date();
-  // let time = `${currentDate.getHours()}:${currentDate.getMinutes()} and ${currentDate.getSeconds()} seconds`;
   tweet.created_at = new Date();
   addTweet(tweet);
 };
@@ -63,9 +63,9 @@ scheduleNextTweet();
 // utility function for letting students add "write a tweet" functionality
 // (note: not used by the rest of this file.)
 var writeTweet = function(message){
-  if(!visitor){
-    throw new Error('set the global visitor property!');
-  }
+  // if(!visitor){
+    
+  // }
   var tweet = {};
   tweet.user = visitor;
   tweet.message = message;

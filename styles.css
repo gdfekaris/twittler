@@ -1,8 +1,90 @@
-.tweets {
-  word-spacing:.1em;
-
+body {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "leftHead Header rightHead"
+    "leftCont Content rightCont"
+    "leftContTwo ContentTwo rightContTwo"
+    "leftFoot Footer rightFoot";
+  background-color: #005aff;
 }
 
-/*.tweetList {
-	  word-spacing:.1em;
-}*/
+h1 {
+  grid-area: Header;
+  text-align: center;
+  color: #ffd700;
+  font-family: American Typewriter, serif;
+  font-size: 300%;
+}
+
+#newTweets {
+  grid-area: Content;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #a500ff;
+  color: #00ffa5;
+  font-family: FreeMono, monospace;
+  font-size: large;
+  letter-spacing: 1px;
+}
+
+.guestTweetButton {
+  grid-area: ContentTwo;
+  justify-self: left;
+  height: 60%;
+  width: 20%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #ff5133;
+  color: #00ffa5;
+  font-family: FreeMono, monospace;
+  font-size: 100%;
+}
+
+.textArea {
+  grid-area: ContentTwo;
+  justify-self: end;
+  resize: none;
+  font-size: 130%;
+  font-family: Gill Sans, sans-serif;
+  height: 50%;
+  width: 75%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#tweetList {
+  grid-area: Footer;
+  background-color: #FFA500;
+  padding: 10px;
+}
+
+.tweets {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "upper"
+    "midd"
+    "lower";
+  font-family: Gill Sans, sans-serif;
+  font-size: 125%;
+  color: #daff00
+}
+
+.userButton {
+  grid-area: upper;
+  justify-self: start;
+  background-color: #00ffa5;
+  font-family: Roboto, monospace;
+  font-size: 85%;
+}
+
+.timeStamp {
+  grid-area: lower;
+  justify-self: end;
+  color: #eeeeee;
+  font-size: small;
+}
