@@ -20,11 +20,25 @@ $(document).ready(function(){
   };
   const userFeed = () => {
     let $target = (event.target).id;
-    feed(streams.users[$target]);
+    if ($target === 'visitor') {
+      feed(streams.visitors[$target]);
+    } else {
+      feed(streams.users[$target]);
+    }
   };
+
   const myFunction = () => {
-    let $text = $(".textArea").val();
-    //console.log(writeTweet())
+    let message = $(".textArea").val();
+    // if(!visitor){
+    //   throw new Error('set the global visitor property!');
+    // }
+    var tweet = {}; 
+    tweet.user = 'visitor';
+    tweet.message = message;
+    tweet.created_at = new Date();
+    addTweet(tweet);
+    feed(streams.home);
+    $(".textArea").val('');
   };
 
   mainFeed(); //adds tweets on launch;
