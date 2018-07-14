@@ -27,11 +27,24 @@ var addTweet = function(newTweet){
   streams.home.push(newTweet);
 };
 
-// utility function
-var randomElement = function(array){
+//Setting up a class for pseudoclassical refactoring
+const Randomizer = function() {};
+
+//pseudoclassical refactoring
+let randomizer = new Randomizer;
+
+//pseudoclassical refactoring
+Randomizer.prototype.randomElement = function(array){
   var randomIndex = Math.floor(Math.random() * array.length);
   return array[randomIndex];
 };
+
+//commented out to make room for pseudoclassical refactoring
+// utility function
+// var randomElement = function(array){
+//   var randomIndex = Math.floor(Math.random() * array.length);
+//   return array[randomIndex];
+// };
 
 // random tweet generator
 var opening = ['just', '', '', '', '', 'ask me how i', 'completely', 'nearly', 'productively', 'efficiently', 'last night i', 'the president', 'that wizard', 'a ninja', 'a seedy old man'];
@@ -40,37 +53,41 @@ var objects = ['my', 'your', 'the', 'a', 'my', 'an entire', 'this', 'that', 'the
 var nouns = ['cat', 'koolaid', 'system', 'city', 'worm', 'cloud', 'potato', 'money', 'way of life', 'belief system', 'security system', 'bad decision', 'future', 'life', 'pony', 'mind'];
 var tags = ['#techlife', '#burningman', '#sf', 'but only i know how', 'for real', '#sxsw', '#ballin', '#omg', '#yolo', '#magic', '', '', '', ''];
 
-var randomMessage = function(){
-  return [randomElement(opening), randomElement(verbs), randomElement(objects), randomElement(nouns), randomElement(tags)].join(' ');
+//pseudoclassical refactoring
+Randomizer.prototype.randomMessage = function(){
+  return [this.randomElement(opening), this.randomElement(verbs), this.randomElement(objects), this.randomElement(nouns), this.randomElement(tags)].join(' ');
 };
 
-// generate random tweets on a random schedule
-var generateRandomTweet = function(){
+//commented out to make room for pseudoclassical refactoring
+// var randomMessage = function(){
+//   return [randomElement(opening), randomElement(verbs), randomElement(objects), randomElement(nouns), randomElement(tags)].join(' ');
+// };
+
+//pseudoclassical refactoring
+Randomizer.prototype.generateRandomTweet = function(){
   var tweet = {};
-  tweet.user = randomElement(users);
-  tweet.message = randomMessage();
+  tweet.user = this.randomElement(users);
+  tweet.message = this.randomMessage();
   tweet.created_at = new Date();
   addTweet(tweet);
 };
 
+//commented out to make room for pseudoclassical refactoring
+// generate random tweets on a random schedule
+// const generateRandomTweet = function(){
+//   var tweet = {};
+//   tweet.user = this.randomElement(users);
+//   tweet.message = this.randomMessage();
+//   tweet.created_at = new Date();
+//   addTweet(tweet);
+// };
+
 for(var i = 0; i < 10; i++){
-  generateRandomTweet();
+  randomizer.generateRandomTweet();//pseudoclassical refactoring
 }
 
 var scheduleNextTweet = function(){
-  generateRandomTweet();
+  randomizer.generateRandomTweet();//pseudoclassical refactoring
   setTimeout(scheduleNextTweet, Math.random() * 1500);
 };
 scheduleNextTweet();
-
-// utility function for letting students add "write a tweet" functionality
-// (note: not used by the rest of this file.)
-// var writeTweet = function(message){
-//   if(!visitor){
-//     throw new Error('set the global visitor property!');
-//   }
-//   var tweet = {};
-//   tweet.user = visitor;
-//   tweet.message = message;
-//   addTweet(tweet);
-// };
